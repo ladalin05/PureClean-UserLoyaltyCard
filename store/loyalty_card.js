@@ -10,7 +10,7 @@ export const useLoyaltyCardStore = defineStore('loyalty_card', () => {
     const fetchLoyaltyCards = async () => {
         try {
             const res = await api.get('/loyalty-cards')
-            const pageData = res?.data?.data || {}   // paginator object
+            const pageData = res?.data || {}   // paginator object
             loyaltyCards.value = Array.isArray(pageData) ? pageData : [pageData]
             loyaltyCard.value = loyaltyCards.value[loyaltyCards.value.length - 1];
             if (loyaltyCards.value.length > 1 && !loyaltyCard.value?.purchase1) {
